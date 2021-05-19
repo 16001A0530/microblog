@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microblog</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="navbar__brand">
+            <img src="static/images/microblog-logo.svg" alt="microblog-logo" class="navbar__logo">Microblog
+        </div>
+        <ul class="navbar__navigation">
+            <li class="navbar__navigation-item">
+                <a href="#" class="navbar__link">Recent</a>
+            </li>
+            <li class="navbar__navigation-item">
+                <a href="#" class="navbar__link">Calendar</a>
+            </li>
+        </ul>
+    </header>
+    <main class="main">
+        <section>
+            <h1>New Entry</h1>
+            <form action="./home" method="post" class="form">
+                <p class="form__input">
+                    <label for="entry" class="form__label">Entry contents :</label>
+                    <textarea name="content" id="entry" class="form__textarea" rows="4"
+                        aria-label="Entry contents"></textarea>
+                </p>
+                <button type="submit" class="form__submit">Submit</button>
+            </form>
+        </section>
+        <section>
+            <h1>Recent Posts</h1>
+            {% for entry in entries %}
+                <article class="entry">
+                    <div>
+                        <h2 class="entry__title">{{ entry['content'] | truncate(20, true) }}</h2>
+                        <time datetime="{{ entry['date'] }}" class="entry__date"> &nbsp; {{ entry['f_date'] }} </time>
+                    </div>
+                    <p class="entry__content">
+                        {{ entry['content'] }}
+                    </p>
+                </article>
+            {% endfor %}
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="footer__content">
+            <section class="left">
+                <a href="#" class="footer__item">Made by Venkatesh Pothagani</a>
+                <a href="#" class="footer__item">Checkout my other Projects</a>
+            </section>
+            <section class="right">
+                <div class="footer__column">
+                    <a href="#" class="footer__item">Recent</a>
+                    <a href="#" class="footer__item">Calendar</a>
+                </div>
+                <div class="footer__column">
+                    <a href="#" class="footer__item">About</a>
+                    <a href="#" class="footer__item">Source Code</a>
+                </div>
+            </section>
+        </div>
+    </footer>
+</body>
+
+</html>
